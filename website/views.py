@@ -6,7 +6,10 @@ from django.contrib.auth import authenticate, login, logout
 
 # Create your views here.
 def index(request):
-    return HttpResponseRedirect(reverse('website:login'))
+    if request.user.is_authenticated:
+        return render(request, "website/index.html")
+    else:
+        return HttpResponseRedirect(reverse('website:login'))
 
 def login_user(request):
     context = {}
@@ -25,5 +28,7 @@ def login_user(request):
 def register_user(request):
     return HttpResponse("register page placeholder")
 
-def logout(request):
-    return None;
+def logout_user(request):
+    if request.user.is_authenticated:
+        logout(request)
+    return HttpResponseRedirect(reverse("website:index"))
