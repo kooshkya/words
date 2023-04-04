@@ -31,7 +31,6 @@ def login_user(request):
 
 def register_user(request):
     if request.method == "POST":
-        #return HttpResponse([(key, request.POST[key]) for key in request.POST])
         username = request.POST["username"]
         email = request.POST["email"]
         password1 = request.POST["password1"]
