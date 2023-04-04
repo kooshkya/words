@@ -1,0 +1,25 @@
+{% extends "website/layout.html" %}
+{% block content %}
+    <h1>Signup</h1>
+
+    {% if messages %}
+        <ul>
+            {% for message in messages %}        
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <form action="{% url "website:register" %}" method="POST">
+        {% csrf_token %}
+        <input type="text" name="username" placeholder="Username" required>
+        <input type="email" name="email" placeholder="Email" required>
+        <input type="password" name="password1" placeholder="Password" required>
+        <input type="password" name="password2" placeholder="Confirm Password" required>
+        <input type="text" name="first_name" placeholder="First Name">
+        <input type="text" name="last_name" placeholder="Last Name">
+        <br/>
+        <input type="submit" value="Submit">
+    </form>
+
+{% endblock %}
