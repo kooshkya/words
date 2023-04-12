@@ -3,7 +3,13 @@
     <h1>Welcome to index!</h1>
     <ul>
         {% for word in user.word_set.all %}
-           <li> {{ word }} </li>
+            <li> 
+                {{ word }}
+                <form action="{% url 'website:delete_word' word.pk %}" method="POST">
+                    {% csrf_token %}
+                    <input type="submit" value="delete">
+                </form>
+            </li>
         {% endfor %}
     </ul>
 

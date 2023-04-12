@@ -5,6 +5,7 @@ from django.urls import reverse
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
+from .models import *
 
 from . import my_utils as mu
 
@@ -68,4 +69,9 @@ def add_word(request):
             return HttpResponseRedirect(reverse("webite:index"))
     else:
         pass
+
+def delete_word(request, pk):
+    word = Word.objects.get(pk=pk)
+    word.delete()
+    return HttpResponseRedirect(reverse("website:index"))
     
