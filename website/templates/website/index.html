@@ -1,5 +1,12 @@
 {% extends "website/layout.html" %}
 {% block content %}
     <h1>Welcome to index!</h1>
+    <ul>
+        {% for word in user.word_set.all %}
+           <li> {{ word }} </li>
+        {% endfor %}
+    </ul>
+
+    <h2><a href="{% url 'website:add_word' %}">Add Word</a></h2>
     <h2><a href="{% url 'website:logout' %}">Logout</a></h2>
 {% endblock %}

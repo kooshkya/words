@@ -1,0 +1,14 @@
+{% extends "website/layout.html" %}
+{% block content %}
+    <h1>Add Word</h1>
+    <form action="{% url 'website:add_word' %}" method="POST">
+        {% csrf_token %}
+
+        <input type="text" placeholder="word" name="word">
+        <input type="text" placeholder="definition" name="definition">
+        <input type="text" placeholder="example" name="example">
+
+        <input type="submit" value="submit">
+    </form>
+    <h2><a href="{% url 'website:index' %}">Back</a></h2>
+{% endblock %}

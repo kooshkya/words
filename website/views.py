@@ -15,10 +15,10 @@ def index(request):
     else:
         return HttpResponseRedirect(reverse('website:login'))
 
+
 def login_user(request):
     context = {}
     if request.method == "POST":
-        # process login attempt
         username = request.POST["username"]
         password = request.POST["password"]
         user = authenticate(request, username=username, password=password)
@@ -28,6 +28,7 @@ def login_user(request):
         else:
             context['errors'] = ["Your login credentials are invalid."]
     return render(request, "website/login.html", context=context)
+
 
 def register_user(request):
     if request.method == "POST":
@@ -52,7 +53,19 @@ def register_user(request):
 
     return render(request, "website/register.html")
 
+
 def logout_user(request):
     if request.user.is_authenticated:
         logout(request)
     return HttpResponseRedirect(reverse("website:index"))
+
+
+def add_word(request):
+    if request.method == "GET":
+        if request.user.is_authenticated:
+            return render(request, "website/add_word.html", context={})
+        else:
+            return HttpResponseRedirect(reverse("webite:index"))
+    else:
+        pass
+    
